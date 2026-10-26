@@ -7,10 +7,11 @@ if (!(Test-Path $InstallDir)) {
     New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 }
 
-# Download the main script/binary
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/$Repo/main/dist/index.js" -OutFile "$InstallDir\quid.js"
+# Download quid.js directly from the root of your GitHub repository
+$DownloadUrl = "https://raw.githubusercontent.com/$Repo/main/quid.js"
+Invoke-WebRequest -Uri $DownloadUrl -OutFile "$InstallDir\quid.js"
 
-# Create a cmd/ps1 wrapper for easy execution
+# Create a executable command wrapper (.cmd) so you can just type 'quid'
 $WrapperContent = @"
 @echo off
 node "$InstallDir\quid.js" %*
