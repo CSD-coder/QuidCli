@@ -11,7 +11,7 @@ if (!(Test-Path $InstallDir)) {
 $DownloadUrl = "https://raw.githubusercontent.com/$Repo/main/quid.js"
 Invoke-WebRequest -Uri $DownloadUrl -OutFile "$InstallDir\quid.js"
 
-# Create a executable command wrapper (.cmd) so you can just type 'quid'
+# Create a command wrapper (.cmd) so you can just type 'quid'
 $WrapperContent = @"
 @echo off
 node "$InstallDir\quid.js" %*
